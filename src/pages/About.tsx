@@ -1,4 +1,3 @@
-import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
 import { Element } from "react-scroll";
 
 const About = () => {

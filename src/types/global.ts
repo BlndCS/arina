@@ -5,7 +5,6 @@ import {
   ElementType,
   PropsWithChildren,
   ReactElement,
-  ReactNode,
 } from "react";
 
 import { Toast, ToasterToast } from "@/components/ui/use-toast";
