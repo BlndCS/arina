@@ -7,15 +7,7 @@ import {
   ReactElement,
   ReactNode,
 } from "react";
-import { FieldError, FieldValues, SubmitHandler } from "react-hook-form";
-import { ChangeNameQ, GetAuthQ, GetUsersQ, User } from "./auth";
-import {
-  FetchNextPageOptions,
-  InfiniteData,
-  InfiniteQueryObserverResult,
-  RefetchOptions,
-} from "@tanstack/react-query";
-import { AxiosError } from "axios";
+
 import { Toast, ToasterToast } from "@/components/ui/use-toast";
 
 export type GlobalFormProps = {
@@ -26,56 +18,8 @@ export type NoDataProps = PropsWithChildren<{}> &
   ComponentPropsWithoutRef<"div">;
 export type ComponentGridProps = PropsWithChildren<{}> &
   ComponentPropsWithoutRef<"div">;
-export type PaginationObject<T extends DataTypes> = {
-  paginatedData: T;
-  meta: {
-    nextPageUrl: string;
-    total: number;
-  };
-};
+
 export type Status = 400 | 401 | 402 | 403 | 404 | 500;
-
-export type PaginationReturnType<T extends DataTypes> = InfiniteData<
-  PaginationObject<T>
->;
-export type LastPagePaginationType<T extends DataTypes> = PaginationObject<T>;
-
-export type QueryResult<T extends DataTypes> = {
-  isFetchingNextPage: boolean;
-  data: PaginationReturnType<T> | undefined;
-  hasNextPage: boolean;
-  isLoading: boolean;
-  refetch: (options?: RefetchOptions) => void;
-  fetchNextPage: (
-    options?: FetchNextPageOptions
-  ) => Promise<InfiniteQueryObserverResult>;
-};
-export type DataTypes = GetAuthQ | ChangeNameQ | GetUsersQ | User[];
-
-export type PaginationChildrenProps<T extends DataTypes> = {
-  isFetchingNextPage: boolean;
-  data: PaginationReturnType<T> | undefined;
-  hasNextPage: boolean;
-  isLoading: boolean;
-  ref: (node?: Element | null) => void;
-  refetch: (options?: RefetchOptions) => void;
-  isSearched: boolean;
-  searchData: T | undefined;
-  searchRefetch: (options?: RefetchOptions) => void;
-  fetchNextPage: (
-    options?: FetchNextPageOptions
-  ) => Promise<InfiniteQueryObserverResult>;
-};
-
-export type PaginationPages = "products" | "spends";
-
-export type PaginationProps<T extends DataTypes> = {
-  page?: PaginationPages;
-  children: (props: PaginationChildrenProps<T>) => ReactNode;
-  queryFn: any;
-  searchQueryFn?: any;
-  type?: string | number;
-};
 
 export type Page = undefined | number;
 export type Limit = undefined | number;
@@ -105,21 +49,10 @@ export type ContainerProps<T extends ElementType> = PropsWithChildren<
     as?: T;
   } & ComponentPropsWithoutRef<T>
 >;
-export type FormProps<T extends FieldValues> = {
-  onSubmit: SubmitHandler<T>;
-} & ComponentPropsWithoutRef<"form">;
-export type FormHandle = {
-  clear: () => void;
-};
+
 export type InputProps = {} & ComponentPropsWithRef<"input">;
 export type InputAddonProps = PropsWithChildren<
   {} & ComponentPropsWithRef<"div">
->;
-
-export type InputGroupProps = PropsWithChildren<
-  {
-    error?: FieldError;
-  } & ComponentPropsWithRef<"div">
 >;
 
 export type Id = number;
@@ -171,7 +104,6 @@ export type DropDownItem = {
 
 export type NestErrorMessage = string;
 
-export type NestError<T = unknown, N = any> = AxiosError<T, N>;
 export type Token = string;
 export type RouterProviderType = {
   Component: ElementType;
@@ -272,5 +204,3 @@ export type ToastType = ({ ...props }: Toast) => {
   dismiss: () => void;
   update: (props: ToasterToast) => void;
 };
-
-export type CatchError = NestError | AxiosError;
