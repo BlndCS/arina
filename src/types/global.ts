@@ -7,8 +7,6 @@ import {
   ReactElement,
 } from "react";
 
-import { Toast, ToasterToast } from "@/components/ui/use-toast";
-
 export type GlobalFormProps = {
   state?: "update" | "insert";
 };
@@ -196,10 +194,4 @@ export type Cookie = {
 
 export type FormFinalOperation = {
   onClose?: () => void;
-};
-
-export type ToastType = ({ ...props }: Toast) => {
-  id: string;
-  dismiss: () => void;
-  update: (props: ToasterToast) => void;
 };
